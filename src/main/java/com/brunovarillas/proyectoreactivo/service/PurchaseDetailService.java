@@ -2,18 +2,19 @@ package com.brunovarillas.proyectoreactivo.service;
 
 import com.brunovarillas.proyectoreactivo.controller.dto.purchaseDetail.PurchaseDetailDto;
 import com.brunovarillas.proyectoreactivo.repository.entity.PurchaseDetailEntity;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface PurchaseDetailService {
-    Mono<PurchaseDetailEntity> createPurchaseDetail(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailEntity> updatePurchaseDetail(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailEntity> deletePurchaseDetail(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailEntity> getPurchaseDetail(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailEntity> getAllPurchaseDetails();
-    Mono<PurchaseDetailEntity> getPurchaseDetailsByProduct(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailEntity> getPurchaseDetailsByShop(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailEntity> getPurchaseDetailsByUser(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailEntity> getPurchaseDetailsByDate(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailEntity> getPurchaseDetailsByStatus(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailEntity> getPurchaseDetailsByShippingDate(PurchaseDetailDto purchaseDetailDto);
+    Mono<PurchaseDetailDto> createPurchaseDetail(PurchaseDetailDto purchaseDetailDto);
+    Mono<PurchaseDetailDto> updatePurchaseDetail(PurchaseDetailDto purchaseDetailDto);
+    Mono<PurchaseDetailDto> deletePurchaseDetail(PurchaseDetailDto purchaseDetailDto);
+    Mono<PurchaseDetailDto> getPurchaseDetail(PurchaseDetailDto purchaseDetailDto);
+    Flux<PurchaseDetailDto> getAllPurchaseDetails();
+    Flux<PurchaseDetailDto> getPurchaseDetailsByProduct(PurchaseDetailDto purchaseDetailDto);
+    Flux<PurchaseDetailDto> getPurchaseDetailsByShop(PurchaseDetailDto purchaseDetailDto);
+    Flux<PurchaseDetailDto> getPurchaseDetailsByUser(PurchaseDetailDto purchaseDetailDto);
+    Flux<PurchaseDetailDto> getPurchaseDetailsByDate(PurchaseDetailDto purchaseDetailDto);
+    Flux<PurchaseDetailDto> getPurchaseDetailsByStatus(PurchaseDetailDto purchaseDetailDto);
+    Flux<PurchaseDetailDto> getPurchaseDetailsByShippingDate(PurchaseDetailDto purchaseDetailDto);
 }

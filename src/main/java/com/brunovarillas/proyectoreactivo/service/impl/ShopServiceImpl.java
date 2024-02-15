@@ -8,6 +8,7 @@ import com.brunovarillas.proyectoreactivo.repository.entity.ShopEntity;
 import com.brunovarillas.proyectoreactivo.service.ShopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -15,32 +16,32 @@ import reactor.core.publisher.Mono;
 public class ShopServiceImpl implements ShopService {
     private final ShopRepository shopRepository;
     @Override
-    public Mono<ShopEntity> createShop(CreateShopDto createShopDto) {
+    public Mono<CreateShopDto> createShop(CreateShopDto createShopDto) {
         return null;
     }
 
     @Override
-    public Mono<ShopEntity> updateShop(ShopDto shopDto) {
+    public Mono<ShopDto> updateShop(ShopDto shopDto) {
         return null;
     }
 
     @Override
-    public Mono<ShopEntity> deleteShop(ShopDto shopDto) {
+    public Mono<ShopDto> deleteShop(ShopDto shopDto) {
         return null;
     }
 
     @Override
-    public Mono<ShopEntity> getShop(ShopDto shopDto) {
+    public Mono<ShopDto> getShop(ShopDto shopDto) {
         return null;
     }
 
     @Override
-    public Mono<ShopEntity> getAllShops() {
+    public Flux<ShopDto> getAllShops() {
         return null;
     }
 
     @Override
-    public Mono<ShopEntity> getShopOrders(ShopOrdersDto ShopOrdersDto) {
+    public Mono<ShopOrdersDto> getShopOrders(ShopOrdersDto ShopOrdersDto) {
         return null;
     }
 }

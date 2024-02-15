@@ -12,7 +12,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @Setter
 @Builder
-@Table("offer")
+@Table("offers")
 public class OfferEntity {
     @Id
     private Integer id;

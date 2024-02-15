@@ -2,15 +2,16 @@ package com.brunovarillas.proyectoreactivo.service;
 
 import com.brunovarillas.proyectoreactivo.controller.dto.order.OrderDto;
 import com.brunovarillas.proyectoreactivo.repository.entity.OrderEntity;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface OrderService {
-    Mono<OrderEntity> createOrder(OrderDto orderDto);
-    Mono<OrderEntity> cancelOrder(OrderDto orderDto);
-    Mono<OrderEntity> getOrder(OrderDto orderDto);
-    Mono<OrderEntity> getAllOrders(OrderDto orderDto);
-    Mono<OrderEntity> updateOrder(OrderDto orderDto);
-    Mono<OrderEntity> deleteOrder(OrderDto orderDto);
-    Mono<OrderEntity> getOrdersByUser(OrderDto orderDto);
-    Mono<OrderEntity> getOrdersByProduct(OrderDto orderDto);
+    Mono<OrderDto> createOrder(OrderDto orderDto);
+    Mono<OrderDto> cancelOrder(OrderDto orderDto);
+    Mono<OrderDto> getOrder(OrderDto orderDto);
+    Flux<OrderDto> getAllOrders();
+    Flux<OrderDto> updateOrder(OrderDto orderDto);
+    Flux<OrderDto> deleteOrder(OrderDto orderDto);
+    Flux<OrderDto> getOrdersByUser(OrderDto orderDto);
+    Flux<OrderDto> getOrdersByProduct(OrderDto orderDto);
 }

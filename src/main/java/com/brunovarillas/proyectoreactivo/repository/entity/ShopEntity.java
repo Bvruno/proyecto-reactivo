@@ -9,7 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @Setter
 @Builder
-@Table("shop")
+@Table("shops")
 public class ShopEntity {
     @Id
     private Integer id;

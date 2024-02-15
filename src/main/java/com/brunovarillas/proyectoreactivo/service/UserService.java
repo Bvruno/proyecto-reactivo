@@ -8,10 +8,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface UserService {
-    Mono<UserEntity> createUser(CreateUserDto createUserDto);
-    Mono<UserEntity> updateUser(UserDto userDto);
-    Mono<UserEntity> deleteUser(UserDto userDto);
-    Mono<UserEntity> getUser(Integer id);
-    Flux<UserEntity> getAllUsers();
-    Mono<UserEntity> getUserOrders(UserOrdersDto userOrdersDto);
+    Mono<UserDto> createUser(CreateUserDto createUserDto);
+    Mono<UserDto> updateUser(UserDto userDto);
+    Mono<UserDto> deleteUser(UserDto userDto);
+    Mono<UserDto> getUser(Integer id);
+    Flux<UserDto> getAllUsers();
+    Mono<UserDto> getUserOrders(UserOrdersDto userOrdersDto);
 }

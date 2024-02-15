@@ -10,7 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @Setter
 @Builder
-@Table("order")
+@Table("orders")
 public class OrderEntity {
     private Integer id;
 

@@ -6,6 +6,7 @@ import com.brunovarillas.proyectoreactivo.repository.entity.PurchaseDetailEntity
 import com.brunovarillas.proyectoreactivo.service.PurchaseDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -13,57 +14,57 @@ import reactor.core.publisher.Mono;
 public class PurchaseDetailServiceImpl implements PurchaseDetailService {
     private final PurchaseDetailRepository purchaseDetailRepository;
     @Override
-    public Mono<PurchaseDetailEntity> createPurchaseDetail(PurchaseDetailDto purchaseDetailDto) {
+    public Mono<PurchaseDetailDto> createPurchaseDetail(PurchaseDetailDto purchaseDetailDto) {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailEntity> updatePurchaseDetail(PurchaseDetailDto purchaseDetailDto) {
+    public Mono<PurchaseDetailDto> updatePurchaseDetail(PurchaseDetailDto purchaseDetailDto) {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailEntity> deletePurchaseDetail(PurchaseDetailDto purchaseDetailDto) {
+    public Mono<PurchaseDetailDto> deletePurchaseDetail(PurchaseDetailDto purchaseDetailDto) {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailEntity> getPurchaseDetail(PurchaseDetailDto purchaseDetailDto) {
+    public Mono<PurchaseDetailDto> getPurchaseDetail(PurchaseDetailDto purchaseDetailDto) {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailEntity> getAllPurchaseDetails() {
+    public Flux<PurchaseDetailDto> getAllPurchaseDetails() {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailEntity> getPurchaseDetailsByProduct(PurchaseDetailDto purchaseDetailDto) {
+    public Flux<PurchaseDetailDto> getPurchaseDetailsByProduct(PurchaseDetailDto purchaseDetailDto) {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailEntity> getPurchaseDetailsByShop(PurchaseDetailDto purchaseDetailDto) {
+    public Flux<PurchaseDetailDto> getPurchaseDetailsByShop(PurchaseDetailDto purchaseDetailDto) {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailEntity> getPurchaseDetailsByUser(PurchaseDetailDto purchaseDetailDto) {
+    public Flux<PurchaseDetailDto> getPurchaseDetailsByUser(PurchaseDetailDto purchaseDetailDto) {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailEntity> getPurchaseDetailsByDate(PurchaseDetailDto purchaseDetailDto) {
+    public Flux<PurchaseDetailDto> getPurchaseDetailsByDate(PurchaseDetailDto purchaseDetailDto) {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailEntity> getPurchaseDetailsByStatus(PurchaseDetailDto purchaseDetailDto) {
+    public Flux<PurchaseDetailDto> getPurchaseDetailsByStatus(PurchaseDetailDto purchaseDetailDto) {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailEntity> getPurchaseDetailsByShippingDate(PurchaseDetailDto purchaseDetailDto) {
+    public Flux<PurchaseDetailDto> getPurchaseDetailsByShippingDate(PurchaseDetailDto purchaseDetailDto) {
         return null;
     }
 }

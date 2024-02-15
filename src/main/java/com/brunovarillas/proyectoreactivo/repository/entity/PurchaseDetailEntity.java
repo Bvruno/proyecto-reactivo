@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@Table("purchase_detail")
+@Table("purchase_details")
 public class PurchaseDetailEntity {
     @Id
     private Integer id;

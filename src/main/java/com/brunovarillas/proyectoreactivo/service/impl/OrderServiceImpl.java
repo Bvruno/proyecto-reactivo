@@ -6,6 +6,7 @@ import com.brunovarillas.proyectoreactivo.repository.entity.OrderEntity;
 import com.brunovarillas.proyectoreactivo.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -13,42 +14,42 @@ import reactor.core.publisher.Mono;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     @Override
-    public Mono<OrderEntity> createOrder(OrderDto orderDto) {
+    public Mono<OrderDto> createOrder(OrderDto orderDto) {
         return null;
     }
 
     @Override
-    public Mono<OrderEntity> cancelOrder(OrderDto orderDto) {
+    public Mono<OrderDto> cancelOrder(OrderDto orderDto) {
         return null;
     }
 
     @Override
-    public Mono<OrderEntity> getOrder(OrderDto orderDto) {
+    public Mono<OrderDto> getOrder(OrderDto orderDto) {
         return null;
     }
 
     @Override
-    public Mono<OrderEntity> getAllOrders(OrderDto orderDto) {
+    public Flux<OrderDto> getAllOrders() {
         return null;
     }
 
     @Override
-    public Mono<OrderEntity> updateOrder(OrderDto orderDto) {
+    public Flux<OrderDto> updateOrder(OrderDto orderDto) {
         return null;
     }
 
     @Override
-    public Mono<OrderEntity> deleteOrder(OrderDto orderDto) {
+    public Flux<OrderDto> deleteOrder(OrderDto orderDto) {
         return null;
     }
 
     @Override
-    public Mono<OrderEntity> getOrdersByUser(OrderDto orderDto) {
+    public Flux<OrderDto> getOrdersByUser(OrderDto orderDto) {
         return null;
     }
 
     @Override
-    public Mono<OrderEntity> getOrdersByProduct(OrderDto orderDto) {
+    public Flux<OrderDto> getOrdersByProduct(OrderDto orderDto) {
         return null;
     }
 }

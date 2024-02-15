@@ -7,6 +7,7 @@ import com.brunovarillas.proyectoreactivo.service.OfferService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -14,32 +15,32 @@ import reactor.core.publisher.Mono;
 public class OfferServiceImpl implements OfferService {
     private final OfferRepository offerRepository;
     @Override
-    public Mono<OfferEntity> createOffer(OfferDto offerDto) {
+    public Mono<OfferDto> createOffer(OfferDto offerDto) {
         return null;
     }
 
     @Override
-    public Mono<OfferEntity> updateOffer(OfferDto offerDto) {
+    public Mono<OfferDto> updateOffer(OfferDto offerDto) {
         return null;
     }
 
     @Override
-    public Mono<OfferEntity> deleteOffer(OfferDto offerDto) {
+    public Mono<OfferDto> deleteOffer(OfferDto offerDto) {
         return null;
     }
 
     @Override
-    public Mono<OfferEntity> getOffer(OfferDto offerDto) {
+    public Mono<OfferDto> getOffer(OfferDto offerDto) {
         return null;
     }
 
     @Override
-    public Mono<OfferEntity> getAllOffers() {
+    public Flux<OfferDto> getAllOffers() {
         return null;
     }
 
     @Override
-    public Mono<OfferEntity> getOffersByProduct(OfferDto offerDto) {
+    public Flux<OfferDto> getOffersByProduct(OfferDto offerDto) {
         return null;
     }
 }

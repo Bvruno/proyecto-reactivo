@@ -1,5 +1,6 @@
 package com.brunovarillas.proyectoreactivo.controller;
 
+import com.brunovarillas.proyectoreactivo.controller.dto.user.CreateUserDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.user.UserDto;
 import com.brunovarillas.proyectoreactivo.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,13 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public Mono<Flux<UserDto>> getAllUsers() {
+    public Flux<UserDto> getAllUsers() {
         return userService.getAllUsers()
-                .flatMap(Flux::from)
+                .cast(UserDto.class);
+    }
+
+    @PostMapping
+    public Mono<UserDto> createUser(@RequestBody CreateUserDto createUserDto) {
+        return userService.createUser(createUserDto);
     }
 }

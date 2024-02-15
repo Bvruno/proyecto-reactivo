@@ -6,6 +6,7 @@ import com.brunovarillas.proyectoreactivo.repository.entity.ProductEntity;
 import com.brunovarillas.proyectoreactivo.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -13,47 +14,47 @@ import reactor.core.publisher.Mono;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     @Override
-    public Mono<ProductEntity> createProduct(ProductDto productDto) {
+    public Mono<ProductDto> createProduct(ProductDto productDto) {
         return null;
     }
 
     @Override
-    public Mono<ProductEntity> updateProduct(ProductDto productDto) {
+    public Mono<ProductDto> updateProduct(ProductDto productDto) {
         return null;
     }
 
     @Override
-    public Mono<ProductEntity> deleteProduct(ProductDto productDto) {
+    public Mono<ProductDto> deleteProduct(ProductDto productDto) {
         return null;
     }
 
     @Override
-    public Mono<ProductEntity> getProduct(ProductDto productDto) {
+    public Mono<ProductDto> getProduct(ProductDto productDto) {
         return null;
     }
 
     @Override
-    public Mono<ProductEntity> getAllProducts() {
+    public Flux<ProductDto> getAllProducts() {
         return null;
     }
 
     @Override
-    public Mono<ProductEntity> getProductsByPrice(ProductDto productDto) {
+    public Flux<ProductDto> getProductsByPrice(ProductDto productDto) {
         return null;
     }
 
     @Override
-    public Mono<ProductEntity> getProductsByStock(ProductDto productDto) {
+    public Flux<ProductDto> getProductsByStock(ProductDto productDto) {
         return null;
     }
 
     @Override
-    public Mono<ProductEntity> getProductsByDate(ProductDto productDto) {
+    public Flux<ProductDto> getProductsByDate(ProductDto productDto) {
         return null;
     }
 
     @Override
-    public Mono<ProductEntity> getProductsByShop(ProductDto productDto) {
+    public Flux<ProductDto> getProductsByShop(ProductDto productDto) {
         return null;
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @Setter
 @Builder
-@Table("product")
+@Table("products")
 public class ProductEntity {
     @Id
     private Integer id;
