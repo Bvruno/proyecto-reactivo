@@ -8,8 +8,8 @@ import reactor.core.publisher.Mono;
 public interface PurchaseDetailService {
     Mono<PurchaseDetailDto> createPurchaseDetail(PurchaseDetailDto purchaseDetailDto);
     Mono<PurchaseDetailDto> updatePurchaseDetail(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailDto> deletePurchaseDetail(PurchaseDetailDto purchaseDetailDto);
-    Mono<PurchaseDetailDto> getPurchaseDetail(PurchaseDetailDto purchaseDetailDto);
+    Mono<PurchaseDetailDto> deletePurchaseDetail(Integer purchaseDetailDto);
+    Mono<PurchaseDetailDto> getPurchaseDetail(Integer purchaseDetailDto);
     Flux<PurchaseDetailDto> getAllPurchaseDetails();
     Flux<PurchaseDetailDto> getPurchaseDetailsByProduct(PurchaseDetailDto purchaseDetailDto);
     Flux<PurchaseDetailDto> getPurchaseDetailsByShop(PurchaseDetailDto purchaseDetailDto);

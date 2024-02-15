@@ -11,12 +11,11 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/user")
-@Slf4j
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
-    @GetMapping()
+    @GetMapping
     public Mono<UserDto> getUser(@RequestHeader Integer userId) {
         return userService.getUser(userId)
                 .cast(UserDto.class);
@@ -24,12 +23,21 @@ public class UserController {
 
     @GetMapping("/all")
     public Flux<UserDto> getAllUsers() {
-        return userService.getAllUsers()
-                .cast(UserDto.class);
+        return userService.getAllUsers();
     }
 
     @PostMapping
     public Mono<UserDto> createUser(@RequestBody CreateUserDto createUserDto) {
         return userService.createUser(createUserDto);
+    }
+
+    @PutMapping
+    public Mono<UserDto> updateUser(@RequestBody UserDto userDto) {
+        return userService.updateUser(userDto);
+    }
+
+    @DeleteMapping
+    public Mono<UserDto> deleteUser(@RequestBody UserDto userDto) {
+        return userService.deleteUser(userDto);
     }
 }

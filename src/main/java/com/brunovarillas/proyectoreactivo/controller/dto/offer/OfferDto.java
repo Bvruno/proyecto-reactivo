@@ -1,4 +1,6 @@
 package com.brunovarillas.proyectoreactivo.controller.dto.offer;
 
-public record OfferDto(Integer userId, Integer offerId, Integer quantity) {
+import com.brunovarillas.proyectoreactivo.repository.enums.StateOffer;
+
+public record OfferDto(Integer offerId, Integer productId, Integer stock, Double price, StateOffer status, Long date ) {
 }

@@ -16,31 +16,31 @@ public class OfferServiceImpl implements OfferService {
     private final OfferRepository offerRepository;
     @Override
     public Mono<OfferDto> createOffer(OfferDto offerDto) {
-        return null;
+        return offerRepository.save(OfferEntity.from(offerDto)).map(OfferEntity::toDto);
     }
 
     @Override
     public Mono<OfferDto> updateOffer(OfferDto offerDto) {
-        return null;
+        return offerRepository.save(OfferEntity.from(offerDto)).map(OfferEntity::toDto);
     }
 
     @Override
     public Mono<OfferDto> deleteOffer(OfferDto offerDto) {
-        return null;
+        return offerRepository.save(OfferEntity.from(offerDto)).map(OfferEntity::toDto);
     }
 
     @Override
-    public Mono<OfferDto> getOffer(OfferDto offerDto) {
-        return null;
+    public Mono<OfferDto> getOffer(Integer offerId) {
+        return offerRepository.findById(offerId).map(OfferEntity::toDto);
     }
 
     @Override
     public Flux<OfferDto> getAllOffers() {
-        return null;
+        return offerRepository.findAll().map(OfferEntity::toDto);
     }
 
     @Override
     public Flux<OfferDto> getOffersByProduct(OfferDto offerDto) {
-        return null;
+        return offerRepository.findByProductId(offerDto.productId()).map(OfferEntity::toDto);
     }
 }

@@ -1,5 +1,6 @@
 package com.brunovarillas.proyectoreactivo.repository.entity;
 
+import com.brunovarillas.proyectoreactivo.controller.dto.offer.OfferDto;
 import com.brunovarillas.proyectoreactivo.repository.enums.StateOffer;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,4 +26,19 @@ public class OfferEntity {
     private Double price;
     private StateOffer status;
     private Long date;
+
+    public static OfferEntity from(OfferDto offerDto) {
+        return OfferEntity.builder()
+                .id(offerDto.offerId())
+                .productId(ProductEntity.builder().id(offerDto.productId()).build())
+                .stock(offerDto.stock())
+                .price(offerDto.price())
+                .status(offerDto.status())
+                .date(offerDto.date())
+                .build();
+    }
+
+    public OfferDto toDto() {
+        return new OfferDto(id, productId.getId(), stock, price, status, date);
+    }
 }

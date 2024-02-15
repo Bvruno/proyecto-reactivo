@@ -7,11 +7,11 @@ import reactor.core.publisher.Mono;
 
 public interface OrderService {
     Mono<OrderDto> createOrder(OrderDto orderDto);
-    Mono<OrderDto> cancelOrder(OrderDto orderDto);
-    Mono<OrderDto> getOrder(OrderDto orderDto);
+    Mono<OrderDto> cancelOrder(Integer orderId);
+    Mono<OrderDto> getOrder(Integer orderId);
     Flux<OrderDto> getAllOrders();
     Flux<OrderDto> updateOrder(OrderDto orderDto);
-    Flux<OrderDto> deleteOrder(OrderDto orderDto);
+    Flux<OrderDto> deleteOrder(Integer orderId);
     Flux<OrderDto> getOrdersByUser(OrderDto orderDto);
     Flux<OrderDto> getOrdersByProduct(OrderDto orderDto);
 }

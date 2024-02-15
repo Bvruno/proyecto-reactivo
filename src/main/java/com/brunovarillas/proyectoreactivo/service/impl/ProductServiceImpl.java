@@ -24,12 +24,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Mono<ProductDto> deleteProduct(ProductDto productDto) {
+    public Mono<ProductDto> deleteProduct(Integer productId) {
         return null;
     }
 
     @Override
-    public Mono<ProductDto> getProduct(ProductDto productDto) {
+    public Mono<ProductDto> getProduct(Integer productId) {
         return null;
     }
 

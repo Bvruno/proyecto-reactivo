@@ -8,8 +8,8 @@ import reactor.core.publisher.Mono;
 public interface ProductService {
     Mono<ProductDto> createProduct(ProductDto productDto);
     Mono<ProductDto> updateProduct(ProductDto productDto);
-    Mono<ProductDto> deleteProduct(ProductDto productDto);
-    Mono<ProductDto> getProduct(ProductDto productDto);
+    Mono<ProductDto> deleteProduct(Integer productId);
+    Mono<ProductDto> getProduct(Integer productId);
     Flux<ProductDto> getAllProducts();
     Flux<ProductDto> getProductsByPrice(ProductDto productDto);
     Flux<ProductDto> getProductsByStock(ProductDto productDto);

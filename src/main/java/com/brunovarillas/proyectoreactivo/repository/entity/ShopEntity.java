@@ -1,5 +1,6 @@
 package com.brunovarillas.proyectoreactivo.repository.entity;
 
+import com.brunovarillas.proyectoreactivo.repository.enums.StateShop;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,4 +18,5 @@ public class ShopEntity {
     private String description;
     private String address;
     private String schedule;
+    private StateShop status;
 }

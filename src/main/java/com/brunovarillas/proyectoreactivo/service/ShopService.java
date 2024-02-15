@@ -13,5 +13,5 @@ public interface ShopService {
     Mono<ShopDto> deleteShop(ShopDto shopDto);
     Mono<ShopDto> getShop(ShopDto shopDto);
     Flux<ShopDto> getAllShops();
-    Mono<ShopOrdersDto> getShopOrders(ShopOrdersDto ShopOrdersDto);
+    Flux<ShopOrdersDto> getShopOrders(ShopOrdersDto ShopOrdersDto);
 }

@@ -24,12 +24,12 @@ public class PurchaseDetailServiceImpl implements PurchaseDetailService {
     }
 
     @Override
-    public Mono<PurchaseDetailDto> deletePurchaseDetail(PurchaseDetailDto purchaseDetailDto) {
+    public Mono<PurchaseDetailDto> deletePurchaseDetail(Integer purchaseDetailDto) {
         return null;
     }
 
     @Override
-    public Mono<PurchaseDetailDto> getPurchaseDetail(PurchaseDetailDto purchaseDetailDto) {
+    public Mono<PurchaseDetailDto> getPurchaseDetail(Integer purchaseDetailDto) {
         return null;
     }
 

@@ -9,7 +9,7 @@ public interface OfferService {
     Mono<OfferDto> createOffer(OfferDto offerDto);
     Mono<OfferDto> updateOffer(OfferDto offerDto);
     Mono<OfferDto> deleteOffer(OfferDto offerDto);
-    Mono<OfferDto> getOffer(OfferDto offerDto);
+    Mono<OfferDto> getOffer(Integer offerId);
     Flux<OfferDto> getAllOffers();
     Flux<OfferDto> getOffersByProduct(OfferDto offerDto);
 }

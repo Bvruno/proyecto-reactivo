@@ -19,12 +19,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Mono<OrderDto> cancelOrder(OrderDto orderDto) {
+    public Mono<OrderDto> cancelOrder(Integer orderId) {
         return null;
     }
 
     @Override
-    public Mono<OrderDto> getOrder(OrderDto orderDto) {
+    public Mono<OrderDto> getOrder(Integer orderId) {
         return null;
     }
 
@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Flux<OrderDto> deleteOrder(OrderDto orderDto) {
+    public Flux<OrderDto> deleteOrder(Integer orderId) {
         return null;
     }
 
