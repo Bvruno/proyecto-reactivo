@@ -20,7 +20,8 @@ import java.util.Date;
 @Table("offers")
 public class OfferEntity {
     @Id
-    private Integer id;
+    @Column("offer_id")
+    private Integer offerId;
 
     @Column("product_id")
     private Integer productId;
@@ -32,11 +33,6 @@ public class OfferEntity {
     private Double price;
     private StateOffer status;
     private Long date;
-
-    @Transient
-    private ProductEntity product;
-    @Transient
-    private ShopEntity shop;
 
     public static OfferEntity from(CreateOfferDto createOfferDto, Integer shopId) {
         return OfferEntity.builder()
@@ -50,7 +46,7 @@ public class OfferEntity {
     }
 
     public OfferDto toDto() {
-        return new OfferDto(id, productId, stock, price, status, date);
+        return new OfferDto(offerId, productId, stock, price, status, date);
     }
 
     public OfferEntity update(UpdateOfferDto updateOfferDto) {

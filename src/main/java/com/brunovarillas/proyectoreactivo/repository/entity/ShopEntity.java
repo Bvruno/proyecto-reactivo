@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
@@ -13,7 +14,8 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("shops")
 public class ShopEntity {
     @Id
-    private Integer id;
+    @Column("shop_id")
+    private Integer shopId;
     private String name;
     private String description;
     private String address;

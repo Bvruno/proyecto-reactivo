@@ -45,10 +45,6 @@ public class ShopController {
         return shopService.deleteShop(shopId);
     }
 
-    @GetMapping("/order")
-    public Flux<PurchaseDetailDto> getShopPurchaseDetails(@RequestHeader Integer shopId) {
-        return shopService.getShopPurchaseDetails(shopId);
-    }
 
     @GetMapping("/products")
     public Flux<ProductDto> getShopProducts(@RequestHeader Integer shopId) {

@@ -1,18 +1,14 @@
 package com.brunovarillas.proyectoreactivo.service.impl;
 
-import com.brunovarillas.proyectoreactivo.controller.dto.order.OrderDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.product.ProductDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.purchaseDetail.PurchaseDetailDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.shop.CreateShopDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.shop.ShopDto;
-import com.brunovarillas.proyectoreactivo.controller.dto.shop.ShopOrdersDto;
-import com.brunovarillas.proyectoreactivo.repository.OrderRepository;
 import com.brunovarillas.proyectoreactivo.repository.ProductRepository;
 import com.brunovarillas.proyectoreactivo.repository.PurchaseDetailRepository;
 import com.brunovarillas.proyectoreactivo.repository.ShopRepository;
 import com.brunovarillas.proyectoreactivo.repository.entity.ProductEntity;
 import com.brunovarillas.proyectoreactivo.repository.entity.ShopEntity;
-import com.brunovarillas.proyectoreactivo.repository.enums.StateProduct;
 import com.brunovarillas.proyectoreactivo.repository.enums.StateShop;
 import com.brunovarillas.proyectoreactivo.service.ShopService;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +49,7 @@ public class ShopServiceImpl implements ShopService {
                 })
                 .flatMap(shopRepository::save)
                 .map(shopEntity -> new ShopDto(
-                        shopEntity.getId(),
+                        shopEntity.getShopId(),
                         shopEntity.getDescription(),
                         shopEntity.getName(),
                         shopEntity.getAddress(),
@@ -70,7 +66,7 @@ public class ShopServiceImpl implements ShopService {
                 })
                 .flatMap(shopRepository::save)
                 .map(shopEntity -> new ShopDto(
-                        shopEntity.getId(),
+                        shopEntity.getShopId(),
                         shopEntity.getDescription(),
                         shopEntity.getName(),
                         shopEntity.getAddress(),
@@ -82,7 +78,7 @@ public class ShopServiceImpl implements ShopService {
     public Mono<ShopDto> getShop(Integer shopId) {
         return shopRepository.findById(shopId)
                 .map(shopEntity -> new ShopDto(
-                        shopEntity.getId(),
+                        shopEntity.getShopId(),
                         shopEntity.getDescription(),
                         shopEntity.getName(),
                         shopEntity.getAddress(),
@@ -94,25 +90,11 @@ public class ShopServiceImpl implements ShopService {
     public Flux<ShopDto> getAllShops() {
         return shopRepository.findAll()
                 .map(shopEntity -> new ShopDto(
-                        shopEntity.getId(),
+                        shopEntity.getShopId(),
                         shopEntity.getDescription(),
                         shopEntity.getName(),
                         shopEntity.getAddress(),
                         shopEntity.getSchedule()
-                ));
-    }
-
-    @Override
-    public Flux<PurchaseDetailDto> getShopPurchaseDetails(Integer shopId) {
-        return purchaseDetailRepository.findByShopId(shopId)
-                .map(purchaseDetailEntity -> new PurchaseDetailDto(
-                        purchaseDetailEntity.getId(),
-                        purchaseDetailEntity.getListOrderId(),
-                        purchaseDetailEntity.getQuantity(),
-                        purchaseDetailEntity.getPrice(),
-                        purchaseDetailEntity.getTotal(),
-                        purchaseDetailEntity.getStatus(),
-                        purchaseDetailEntity.getDate()
                 ));
     }
 

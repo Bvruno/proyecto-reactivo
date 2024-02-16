@@ -1,5 +1,5 @@
 package com.brunovarillas.proyectoreactivo.repository.enums;
 
-public enum UserRole {
-    ADMIN, USER
+public enum Role {
+    ROLE_ADMIN, ROLE_USER
 }

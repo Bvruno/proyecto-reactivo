@@ -31,7 +31,10 @@ public class OfferServiceImpl implements OfferService {
     public Flux<OfferDto> createOffers(
             List<CreateOfferDto> createOfferList,
             Integer shopId) {
-        return offerRepository.saveAll(createOfferList.stream().map(offerDto -> OfferEntity.from(offerDto, shopId)).toList()).map(OfferEntity::toDto);
+        return offerRepository.saveAll(
+                createOfferList.stream()
+                        .map(offerDto -> OfferEntity.from(offerDto, shopId)).toList())
+                .map(OfferEntity::toDto);
     }
 
     @Override

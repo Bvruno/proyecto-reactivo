@@ -16,7 +16,8 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("products")
 public class ProductEntity {
     @Id
-    private Integer id;
+    @Column("product_id")
+    private Integer productId;
     private String name;
     private String description;
 
@@ -27,9 +28,6 @@ public class ProductEntity {
     private Integer shopId;
 
     private StateProduct status;
-
-    @Transient
-    private ShopEntity shop;
 
     public static ProductEntity from(ProductDto productDto, Integer shopId) {
         return ProductEntity.builder()
@@ -42,12 +40,12 @@ public class ProductEntity {
     }
 
     public ProductDto toDto() {
-        return new ProductDto(id, name, description, urlImage, shopId, status);
+        return new ProductDto(productId, name, description, urlImage, shopId, status);
     }
 
     public ProductEntity update(ProductDto productDto) {
         return ProductEntity.builder()
-                .id(productDto.id())
+                .productId(productDto.id())
                 .name(productDto.name())
                 .description(productDto.description())
                 .urlImage(productDto.urlImage())

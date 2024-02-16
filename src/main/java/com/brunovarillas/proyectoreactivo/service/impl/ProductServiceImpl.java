@@ -22,7 +22,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Flux<ProductDto> createProducts(List<ProductDto> productDtoFlux, Integer shopId) {
-        return productRepository.saveAll(productDtoFlux.stream().map(productDto -> ProductEntity.from(productDto, shopId)).toList()).map(ProductEntity::toDto);
+        return productRepository.saveAll(
+                productDtoFlux.stream()
+                        .map(productDto ->
+                                ProductEntity.from(productDto, shopId)).toList())
+                .map(ProductEntity::toDto);
     }
 
     @Override

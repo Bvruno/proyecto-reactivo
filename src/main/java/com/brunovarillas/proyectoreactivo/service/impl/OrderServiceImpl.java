@@ -1,8 +1,10 @@
 package com.brunovarillas.proyectoreactivo.service.impl;
 
+import com.brunovarillas.proyectoreactivo.controller.dto.order.CreateOrderDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.order.OrderDto;
 import com.brunovarillas.proyectoreactivo.repository.OfferRepository;
 import com.brunovarillas.proyectoreactivo.repository.OrderRepository;
+import com.brunovarillas.proyectoreactivo.repository.entity.OfferEntity;
 import com.brunovarillas.proyectoreactivo.repository.entity.OrderEntity;
 import com.brunovarillas.proyectoreactivo.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
     private final OfferRepository offerRepository;
 
     @Override
-    public Mono<OrderDto> createOrder(OrderDto orderDto) {
+    public Mono<OrderDto> createOrder(CreateOrderDto orderDto) {
         return offerRepository.findById(orderDto.offerId())
                 .flatMap(offerEntity -> {
                     if (offerEntity.getStock() < orderDto.quantity()) {
@@ -34,37 +37,27 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Mono<OrderDto> cancelOrder(Integer orderId) {
-        return null;
-    }
-
-    @Override
     public Mono<OrderDto> getOrder(Integer orderId) {
-        return null;
+        return orderRepository.findById(orderId).map(OrderEntity::toDto);
     }
 
     @Override
     public Flux<OrderDto> getAllOrders() {
-        return null;
+        return orderRepository.findAll().map(OrderEntity::toDto);
     }
 
     @Override
-    public Flux<OrderDto> updateOrder(OrderDto orderDto) {
-        return null;
+    public Mono<OrderDto> updateOrder(OrderDto orderDto) {
+        return orderRepository.findById(orderDto.offerId())
+                .flatMap(orderEntity -> orderRepository.save(orderEntity.update(orderDto)).thenReturn(orderEntity))
+                .map(OrderEntity::toDto);
     }
 
     @Override
-    public Flux<OrderDto> deleteOrder(Integer orderId) {
-        return null;
+    public Mono<OrderDto> deleteOrder(Integer orderId) {
+        return orderRepository.findById(orderId)
+                .flatMap(orderEntity -> orderRepository.delete(orderEntity).thenReturn(orderEntity))
+                .map(OrderEntity::toDto);
     }
 
-    @Override
-    public Flux<OrderDto> getOrdersByUser(OrderDto orderDto) {
-        return null;
-    }
-
-    @Override
-    public Flux<OrderDto> getOrdersByProduct(OrderDto orderDto) {
-        return null;
-    }
 }

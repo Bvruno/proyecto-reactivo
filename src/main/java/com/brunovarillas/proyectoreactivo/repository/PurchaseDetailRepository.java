@@ -6,8 +6,6 @@ import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import reactor.core.publisher.Flux;
 
 public interface PurchaseDetailRepository extends R2dbcRepository<PurchaseDetailEntity, Integer> {
-    Flux<PurchaseDetailEntity> findByShopId(Integer shopId);
-    Flux<PurchaseDetailEntity> findByUserId(Integer userId);
     Flux<PurchaseDetailEntity> findByDate(Long date);
     Flux<PurchaseDetailEntity> findByStatus(StateSale status);
 }

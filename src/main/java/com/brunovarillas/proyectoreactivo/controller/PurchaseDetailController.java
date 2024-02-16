@@ -1,5 +1,6 @@
 package com.brunovarillas.proyectoreactivo.controller;
 
+import com.brunovarillas.proyectoreactivo.controller.dto.purchaseDetail.CreatePurcharseDetailDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.purchaseDetail.PurchaseDetailDto;
 import com.brunovarillas.proyectoreactivo.repository.enums.StateSale;
 import com.brunovarillas.proyectoreactivo.service.PurchaseDetailService;
@@ -14,21 +15,22 @@ import reactor.core.publisher.Mono;
 public class PurchaseDetailController {
     private final PurchaseDetailService purchaseDetailService;
 
-    @GetMapping
-    public Mono<PurchaseDetailDto> getPurchaseDetail(@RequestHeader Integer purchaseDetailId) {
+    @GetMapping("/{purchaseDetailId}")
+    public Mono<PurchaseDetailDto> getPurchaseDetail(@RequestParam Integer purchaseDetailId) {
         return purchaseDetailService.getPurchaseDetail(purchaseDetailId);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public Flux<PurchaseDetailDto> getAllPurchaseDetails() {
         return purchaseDetailService.getAllPurchaseDetails();
     }
 
     @PostMapping
     public Mono<PurchaseDetailDto> createPurchaseDetail(
-            @RequestBody PurchaseDetailDto purchaseDetailDto
+            @RequestHeader Integer userId,
+            @RequestBody CreatePurcharseDetailDto createPurcharseDetailDto
     ) {
-        return purchaseDetailService.createPurchaseDetail(purchaseDetailDto);
+        return purchaseDetailService.createPurchaseDetail(createPurcharseDetailDto, userId);
     }
 
     @PatchMapping("/{purchaseDetailId}")
@@ -42,16 +44,6 @@ public class PurchaseDetailController {
     @DeleteMapping
     public Mono<PurchaseDetailDto> deletePurchaseDetail(@RequestBody Integer purchaseDetailId) {
         return purchaseDetailService.deletePurchaseDetail(purchaseDetailId);
-    }
-
-    @GetMapping("/shop/{shopId}")
-    public Flux<PurchaseDetailDto> getPurchaseDetailsByShop(@RequestParam Integer shopId) {
-        return purchaseDetailService.getPurchaseDetailsByShop(shopId);
-    }
-
-    @GetMapping("/user/{userId}")
-    public Flux<PurchaseDetailDto> getPurchaseDetailsByUser(@RequestParam Integer userId) {
-        return purchaseDetailService.getPurchaseDetailsByUser(userId);
     }
 
     @GetMapping("/date/{date}")
