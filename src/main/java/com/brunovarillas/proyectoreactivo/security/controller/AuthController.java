@@ -8,6 +8,7 @@ import com.brunovarillas.proyectoreactivo.security.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -21,16 +22,12 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public Mono<ServerResponse> login(ServerRequest request) {
-        Mono<LoginDto> dtoMono = request.bodyToMono(LoginDto.class);
-        return dtoMono
-                .flatMap(dto -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(userService.login(dto), TokenDto.class));
+    public Mono<TokenDto> login(@RequestBody LoginDto request) {
+        return userService.login(request);
     }
 
     @PostMapping("/register")
-    public Mono<ServerResponse> create(ServerRequest request) {
-        Mono<CreateUserDto> dtoMono = request.bodyToMono(CreateUserDto.class);
-        return dtoMono
-                .flatMap(dto -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(userService.create(dto), UserEntity.class));
+    public Mono<UserEntity> create(@RequestBody CreateUserDto request) {
+        return userService.create(request);
     }
 }
