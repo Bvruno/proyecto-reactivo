@@ -28,7 +28,7 @@ public class OrderController {
         return orderService.createOrder(orderDto);
     }
 
-    @PutMapping
+    @PatchMapping
     public Flux<OrderDto> updateOrder(@RequestBody OrderDto orderDto) {
         return orderService.updateOrder(orderDto);
     }

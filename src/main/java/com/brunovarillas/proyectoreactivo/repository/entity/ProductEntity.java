@@ -1,5 +1,6 @@
 package com.brunovarillas.proyectoreactivo.repository.entity;
 
+import com.brunovarillas.proyectoreactivo.controller.dto.product.ProductDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,32 @@ public class ProductEntity {
     private String description;
     private String urlImage;
 
-    @Transient
     @Column("shop_id")
-    private ShopEntity shopId;
+    private Integer shopId;
+
+    @Transient
+    private ShopEntity shop;
+
+    public static ProductEntity from(ProductDto productDto, Integer shopId) {
+        return ProductEntity.builder()
+                .name(productDto.name())
+                .description(productDto.description())
+                .urlImage(productDto.urlImage())
+                .shopId(shopId)
+                .build();
+    }
+
+    public ProductDto toDto() {
+        return new ProductDto(id, name, description, urlImage, shopId);
+    }
+
+    public ProductEntity update(ProductDto productDto) {
+        return ProductEntity.builder()
+                .id(productDto.id())
+                .name(productDto.name())
+                .description(productDto.description())
+                .urlImage(productDto.urlImage())
+                .shopId(productDto.shopId())
+                .build();
+    }
 }

@@ -1,6 +1,7 @@
 package com.brunovarillas.proyectoreactivo.repository.entity;
 
 import com.brunovarillas.proyectoreactivo.controller.dto.offer.OfferDto;
+import com.brunovarillas.proyectoreactivo.controller.dto.offer.UpdateOfferDto;
 import com.brunovarillas.proyectoreactivo.repository.enums.StateOffer;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +19,6 @@ public class OfferEntity {
     @Id
     private Integer id;
 
-    @Transient
     @Column("product_id")
     private ProductEntity productId;
 
@@ -40,5 +40,16 @@ public class OfferEntity {
 
     public OfferDto toDto() {
         return new OfferDto(id, productId.getId(), stock, price, status, date);
+    }
+
+    public OfferEntity update(UpdateOfferDto updateOfferDto) {
+        return OfferEntity.builder()
+                .id(updateOfferDto.offerId())
+                .productId(ProductEntity.builder().id(productId.getId()).build())
+                .stock(updateOfferDto.stock())
+                .price(updateOfferDto.price())
+                .status(updateOfferDto.status())
+                .date(updateOfferDto.date())
+                .build();
     }
 }

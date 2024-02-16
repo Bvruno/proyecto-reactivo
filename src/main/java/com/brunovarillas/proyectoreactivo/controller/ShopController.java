@@ -32,7 +32,7 @@ public class ShopController {
         return shopService.createShop(createShopDto);
     }
 
-    @PutMapping
+    @PatchMapping
     public Mono<ShopDto> updateShop(@RequestBody ShopDto shopDto) {
         return shopService.updateShop(shopDto);
     }

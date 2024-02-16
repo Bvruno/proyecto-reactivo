@@ -14,47 +14,37 @@ import reactor.core.publisher.Mono;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     @Override
-    public Mono<ProductDto> createProduct(ProductDto productDto) {
-        return null;
+    public Mono<ProductDto> createProduct(ProductDto productDto, Integer shopId) {
+        return productRepository.save(ProductEntity.from(productDto, shopId)).map(ProductEntity::toDto);
     }
 
     @Override
     public Mono<ProductDto> updateProduct(ProductDto productDto) {
-        return null;
+        return productRepository.findById(productDto.id())
+                .flatMap(productEntity -> productRepository.save(productEntity.update(productDto)).thenReturn(productEntity))
+                .map(ProductEntity::toDto);
     }
 
     @Override
     public Mono<ProductDto> deleteProduct(Integer productId) {
-        return null;
+        return productRepository.findById(productId)
+                .flatMap(productEntity -> productRepository.delete(productEntity).thenReturn(productEntity))
+                .map(ProductEntity::toDto);
     }
 
     @Override
     public Mono<ProductDto> getProduct(Integer productId) {
-        return null;
+        return productRepository.findById(productId).map(ProductEntity::toDto);
     }
 
     @Override
     public Flux<ProductDto> getAllProducts() {
-        return null;
+        return productRepository.findAll().map(ProductEntity::toDto);
     }
 
-    @Override
-    public Flux<ProductDto> getProductsByPrice(ProductDto productDto) {
-        return null;
-    }
 
     @Override
-    public Flux<ProductDto> getProductsByStock(ProductDto productDto) {
-        return null;
-    }
-
-    @Override
-    public Flux<ProductDto> getProductsByDate(ProductDto productDto) {
-        return null;
-    }
-
-    @Override
-    public Flux<ProductDto> getProductsByShop(ProductDto productDto) {
-        return null;
+    public Flux<ProductDto> getProductsByShop(Integer shopId) {
+        return productRepository.findByShopId(shopId).map(ProductEntity::toDto);
     }
 }

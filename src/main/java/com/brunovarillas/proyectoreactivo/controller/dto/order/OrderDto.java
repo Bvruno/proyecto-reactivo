@@ -1,4 +1,9 @@
 package com.brunovarillas.proyectoreactivo.controller.dto.order;
 
-public record OrderDto(Integer userId, Integer offerId, Integer quantity) {
+public record OrderDto(
+    Integer offerId,
+    Integer quantity,
+    Double total,
+    Long date
+) {
 }

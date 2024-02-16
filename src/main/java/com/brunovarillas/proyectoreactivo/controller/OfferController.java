@@ -1,6 +1,8 @@
 package com.brunovarillas.proyectoreactivo.controller;
 
+import com.brunovarillas.proyectoreactivo.controller.dto.offer.DeleteOfferDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.offer.OfferDto;
+import com.brunovarillas.proyectoreactivo.controller.dto.offer.UpdateOfferDto;
 import com.brunovarillas.proyectoreactivo.service.OfferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -28,14 +30,14 @@ public class OfferController {
         return offerService.createOffer(offerDto);
     }
 
-    @PutMapping
-    public Mono<OfferDto> updateOffer(@RequestBody OfferDto offerDto) {
-        return offerService.updateOffer(offerDto);
+    @PatchMapping
+    public Mono<OfferDto> updateOffer(@RequestBody UpdateOfferDto updateOfferDto) {
+        return offerService.updateOffer(updateOfferDto);
     }
 
     @DeleteMapping
-    public Mono<OfferDto> deleteOffer(@RequestBody OfferDto offerDto) {
-        return offerService.deleteOffer(offerDto);
+    public Mono<OfferDto> deleteOffer(@RequestBody DeleteOfferDto deleteOfferDto) {
+        return offerService.deleteOffer(deleteOfferDto);
     }
 
     @GetMapping("/product")

@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS purchase_details (
     id SERIAL PRIMARY KEY,
     shop_id INTEGER REFERENCES shops(id),
+    user_id INTEGER REFERENCES users(id),
     quantity INTEGER,
     price DOUBLE PRECISION,
     total DOUBLE PRECISION,
@@ -47,7 +48,6 @@ CREATE TABLE IF NOT EXISTS offers (
 
 CREATE TABLE IF NOT EXISTS orders (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id),
     offer_id INTEGER REFERENCES offers(id),
     quantity INTEGER,
     total DOUBLE PRECISION,

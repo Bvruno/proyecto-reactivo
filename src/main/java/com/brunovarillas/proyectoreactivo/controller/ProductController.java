@@ -13,22 +13,22 @@ import reactor.core.publisher.Mono;
 public class ProductController {
     private final ProductService productService;
 
-    @GetMapping
-    public Mono<ProductDto> getProduct(@RequestHeader Integer productId) {
+    @GetMapping("/{productId}")
+    public Mono<ProductDto> getProduct(@RequestParam Integer productId) {
         return productService.getProduct(productId);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public Flux<ProductDto> getAllProducts() {
         return productService.getAllProducts();
     }
 
-    @PostMapping
-    public Mono<ProductDto> createProduct(@RequestBody ProductDto productDto) {
-        return productService.createProduct(productDto);
+    @PostMapping("/{shopId}")
+    public Mono<ProductDto> createProduct(@RequestParam Integer shopId, @RequestBody ProductDto productDto) {
+        return productService.createProduct(productDto, shopId);
     }
 
-    @PutMapping
+    @PatchMapping
     public Mono<ProductDto> updateProduct(@RequestBody ProductDto productDto) {
         return productService.updateProduct(productDto);
     }
@@ -38,23 +38,10 @@ public class ProductController {
         return productService.deleteProduct(productId);
     }
 
-    @GetMapping("/shop")
-    public Flux<ProductDto> getProductsByShop(@RequestBody ProductDto productDto) {
-        return productService.getProductsByShop(productDto);
+    @GetMapping("/{shopId}")
+    public Flux<ProductDto> getProductsByShop(@RequestParam Integer shopId) {
+        return productService.getProductsByShop(shopId);
     }
 
-    @GetMapping("/price")
-    public Flux<ProductDto> getProductsByPrice(@RequestBody ProductDto productDto) {
-        return productService.getProductsByPrice(productDto);
-    }
 
-    @GetMapping("/stock")
-    public Flux<ProductDto> getProductsByStock(@RequestBody ProductDto productDto) {
-        return productService.getProductsByStock(productDto);
-    }
-
-    @GetMapping("/date")
-    public Flux<ProductDto> getProductsByDate(@RequestBody ProductDto productDto) {
-        return productService.getProductsByDate(productDto);
-    }
 }

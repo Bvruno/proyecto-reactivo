@@ -15,13 +15,12 @@ import reactor.core.publisher.Mono;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping
-    public Mono<UserDto> getUser(@RequestHeader Integer userId) {
-        return userService.getUser(userId)
-                .cast(UserDto.class);
+    @GetMapping("/{userId}")
+    public Mono<UserDto> getUser(@RequestParam Integer userId) {
+        return userService.getUser(userId);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public Flux<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -31,7 +30,7 @@ public class UserController {
         return userService.createUser(createUserDto);
     }
 
-    @PutMapping
+    @PatchMapping
     public Mono<UserDto> updateUser(@RequestBody UserDto userDto) {
         return userService.updateUser(userDto);
     }

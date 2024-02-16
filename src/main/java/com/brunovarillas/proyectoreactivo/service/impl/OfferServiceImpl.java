@@ -1,6 +1,8 @@
 package com.brunovarillas.proyectoreactivo.service.impl;
 
+import com.brunovarillas.proyectoreactivo.controller.dto.offer.DeleteOfferDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.offer.OfferDto;
+import com.brunovarillas.proyectoreactivo.controller.dto.offer.UpdateOfferDto;
 import com.brunovarillas.proyectoreactivo.repository.OfferRepository;
 import com.brunovarillas.proyectoreactivo.repository.entity.OfferEntity;
 import com.brunovarillas.proyectoreactivo.service.OfferService;
@@ -20,13 +22,17 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public Mono<OfferDto> updateOffer(OfferDto offerDto) {
-        return offerRepository.save(OfferEntity.from(offerDto)).map(OfferEntity::toDto);
+    public Mono<OfferDto> updateOffer(UpdateOfferDto updateOfferDto) {
+        return offerRepository.findById(updateOfferDto.offerId())
+                .flatMap(offerEntity -> offerRepository.save(offerEntity.update(updateOfferDto)).thenReturn(offerEntity))
+                .map(OfferEntity::toDto);
     }
 
     @Override
-    public Mono<OfferDto> deleteOffer(OfferDto offerDto) {
-        return offerRepository.save(OfferEntity.from(offerDto)).map(OfferEntity::toDto);
+    public Mono<OfferDto> deleteOffer(DeleteOfferDto deleteOfferDto) {
+        return offerRepository.findById(deleteOfferDto.offerId())
+                .flatMap(offerEntity -> offerRepository.delete(offerEntity).thenReturn(offerEntity))
+                .map(OfferEntity::toDto);
     }
 
     @Override
