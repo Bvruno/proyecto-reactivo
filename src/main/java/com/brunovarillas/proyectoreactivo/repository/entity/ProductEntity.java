@@ -1,6 +1,7 @@
 package com.brunovarillas.proyectoreactivo.repository.entity;
 
 import com.brunovarillas.proyectoreactivo.controller.dto.product.ProductDto;
+import com.brunovarillas.proyectoreactivo.repository.enums.StateProduct;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,10 +19,14 @@ public class ProductEntity {
     private Integer id;
     private String name;
     private String description;
+
+    @Column("url_image")
     private String urlImage;
 
     @Column("shop_id")
     private Integer shopId;
+
+    private StateProduct status;
 
     @Transient
     private ShopEntity shop;
@@ -32,11 +37,12 @@ public class ProductEntity {
                 .description(productDto.description())
                 .urlImage(productDto.urlImage())
                 .shopId(shopId)
+                .status(StateProduct.ACTIVE)
                 .build();
     }
 
     public ProductDto toDto() {
-        return new ProductDto(id, name, description, urlImage, shopId);
+        return new ProductDto(id, name, description, urlImage, shopId, status);
     }
 
     public ProductEntity update(ProductDto productDto) {
@@ -46,6 +52,7 @@ public class ProductEntity {
                 .description(productDto.description())
                 .urlImage(productDto.urlImage())
                 .shopId(productDto.shopId())
+                .status(StateProduct.ACTIVE)
                 .build();
     }
 }

@@ -28,6 +28,7 @@ public class PurchaseDetailEntity {
 
     @Column("list_order_id")
     private List<Integer> listOrderId;
+
     private Integer quantity;
     private Double price;
     private Double total;

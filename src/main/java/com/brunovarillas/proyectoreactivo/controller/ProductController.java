@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/product")
 @RequiredArgsConstructor
@@ -23,9 +25,14 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @PostMapping("/{shopId}")
-    public Mono<ProductDto> createProduct(@RequestParam Integer shopId, @RequestBody ProductDto productDto) {
+    @PostMapping
+    public Mono<ProductDto> createProduct(@RequestHeader Integer shopId, @RequestBody ProductDto productDto) {
         return productService.createProduct(productDto, shopId);
+    }
+
+    @PostMapping("/list")
+    public Flux<ProductDto> createProducts(@RequestHeader Integer shopId, @RequestBody List<ProductDto> listProductDtos) {
+        return productService.createProducts(listProductDtos, shopId);
     }
 
     @PatchMapping

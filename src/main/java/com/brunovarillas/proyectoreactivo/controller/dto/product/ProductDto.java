@@ -1,4 +1,13 @@
 package com.brunovarillas.proyectoreactivo.controller.dto.product;
 
-public record ProductDto(Integer id, String name, String description, String urlImage, Integer shopId) {
+import com.brunovarillas.proyectoreactivo.repository.enums.StateProduct;
+
+public record ProductDto(
+        Integer id,
+        String name,
+        String description,
+        String urlImage,
+        Integer shopId,
+        StateProduct state
+) {
 }

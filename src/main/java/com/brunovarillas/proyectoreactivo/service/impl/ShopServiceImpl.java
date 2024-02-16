@@ -1,10 +1,18 @@
 package com.brunovarillas.proyectoreactivo.service.impl;
 
+import com.brunovarillas.proyectoreactivo.controller.dto.order.OrderDto;
+import com.brunovarillas.proyectoreactivo.controller.dto.product.ProductDto;
+import com.brunovarillas.proyectoreactivo.controller.dto.purchaseDetail.PurchaseDetailDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.shop.CreateShopDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.shop.ShopDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.shop.ShopOrdersDto;
+import com.brunovarillas.proyectoreactivo.repository.OrderRepository;
+import com.brunovarillas.proyectoreactivo.repository.ProductRepository;
+import com.brunovarillas.proyectoreactivo.repository.PurchaseDetailRepository;
 import com.brunovarillas.proyectoreactivo.repository.ShopRepository;
+import com.brunovarillas.proyectoreactivo.repository.entity.ProductEntity;
 import com.brunovarillas.proyectoreactivo.repository.entity.ShopEntity;
+import com.brunovarillas.proyectoreactivo.repository.enums.StateProduct;
 import com.brunovarillas.proyectoreactivo.repository.enums.StateShop;
 import com.brunovarillas.proyectoreactivo.service.ShopService;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +24,16 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class ShopServiceImpl implements ShopService {
     private final ShopRepository shopRepository;
+    private final PurchaseDetailRepository purchaseDetailRepository;
+    private final ProductRepository productRepository;
     @Override
     public Mono<CreateShopDto> createShop(CreateShopDto createShopDto) {
         return shopRepository.save(ShopEntity.builder()
                 .name(createShopDto.name())
+                .description(createShopDto.description())
                 .address(createShopDto.address())
+                .schedule(createShopDto.schedule())
+                .status(StateShop.ACTIVE)
                 .build())
                 .map(shopEntity -> new CreateShopDto(
                         shopEntity.getName(),
@@ -90,7 +103,22 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Flux<ShopOrdersDto> getShopOrders(ShopOrdersDto ShopOrdersDto) {
-        return null;
+    public Flux<PurchaseDetailDto> getShopPurchaseDetails(Integer shopId) {
+        return purchaseDetailRepository.findByShopId(shopId)
+                .map(purchaseDetailEntity -> new PurchaseDetailDto(
+                        purchaseDetailEntity.getId(),
+                        purchaseDetailEntity.getListOrderId(),
+                        purchaseDetailEntity.getQuantity(),
+                        purchaseDetailEntity.getPrice(),
+                        purchaseDetailEntity.getTotal(),
+                        purchaseDetailEntity.getStatus(),
+                        purchaseDetailEntity.getDate()
+                ));
+    }
+
+    @Override
+    public Flux<ProductDto> getShopProducts(Integer shopId) {
+        return productRepository.findAllByShopId(shopId)
+                .map(ProductEntity::toDto);
     }
 }

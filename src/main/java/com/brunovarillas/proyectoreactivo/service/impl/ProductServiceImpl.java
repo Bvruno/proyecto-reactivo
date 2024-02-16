@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -16,6 +18,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Mono<ProductDto> createProduct(ProductDto productDto, Integer shopId) {
         return productRepository.save(ProductEntity.from(productDto, shopId)).map(ProductEntity::toDto);
+    }
+
+    @Override
+    public Flux<ProductDto> createProducts(List<ProductDto> productDtoFlux, Integer shopId) {
+        return productRepository.saveAll(productDtoFlux.stream().map(productDto -> ProductEntity.from(productDto, shopId)).toList()).map(ProductEntity::toDto);
     }
 
     @Override
@@ -45,6 +52,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Flux<ProductDto> getProductsByShop(Integer shopId) {
-        return productRepository.findByShopId(shopId).map(ProductEntity::toDto);
+        return productRepository.findAllByShopId(shopId).map(ProductEntity::toDto);
     }
 }

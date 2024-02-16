@@ -1,5 +1,6 @@
 package com.brunovarillas.proyectoreactivo.controller;
 
+import com.brunovarillas.proyectoreactivo.controller.dto.offer.CreateOfferDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.offer.DeleteOfferDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.offer.OfferDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.offer.UpdateOfferDto;
@@ -9,25 +10,36 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/offer")
 @RequiredArgsConstructor
 public class OfferController {
     private final OfferService offerService;
 
-    @GetMapping
-    public Mono<OfferDto> getOffer(@RequestHeader Integer offerId) {
+    @GetMapping("/{offerId}")
+    public Mono<OfferDto> getOffer(@RequestParam Integer offerId) {
         return offerService.getOffer(offerId);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public Flux<OfferDto> getAllOffers() {
         return offerService.getAllOffers();
     }
 
     @PostMapping
-    public Mono<OfferDto> createOffer(@RequestBody OfferDto offerDto) {
-        return offerService.createOffer(offerDto);
+    public Mono<OfferDto> createOffer(
+            @RequestHeader Integer shopId,
+            @RequestBody CreateOfferDto offerDto) {
+        return offerService.createOffer(offerDto, shopId);
+    }
+
+    @PostMapping("/list")
+    public Flux<OfferDto> createOffers(
+            @RequestHeader Integer shopId,
+            @RequestBody List<CreateOfferDto> createOfferList) {
+        return offerService.createOffers(createOfferList, shopId);
     }
 
     @PatchMapping

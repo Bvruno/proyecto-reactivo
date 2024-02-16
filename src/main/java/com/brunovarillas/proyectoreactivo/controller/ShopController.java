@@ -1,5 +1,8 @@
 package com.brunovarillas.proyectoreactivo.controller;
 
+import com.brunovarillas.proyectoreactivo.controller.dto.order.OrderDto;
+import com.brunovarillas.proyectoreactivo.controller.dto.product.ProductDto;
+import com.brunovarillas.proyectoreactivo.controller.dto.purchaseDetail.PurchaseDetailDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.shop.CreateShopDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.shop.ShopDto;
 import com.brunovarillas.proyectoreactivo.controller.dto.shop.ShopOrdersDto;
@@ -43,7 +46,12 @@ public class ShopController {
     }
 
     @GetMapping("/order")
-    public Flux<ShopOrdersDto> getShopOrders(ShopOrdersDto ShopOrdersDto) {
-        return shopService.getShopOrders(ShopOrdersDto);
+    public Flux<PurchaseDetailDto> getShopPurchaseDetails(@RequestHeader Integer shopId) {
+        return shopService.getShopPurchaseDetails(shopId);
+    }
+
+    @GetMapping("/products")
+    public Flux<ProductDto> getShopProducts(@RequestHeader Integer shopId) {
+        return shopService.getShopProducts(shopId);
     }
 }
