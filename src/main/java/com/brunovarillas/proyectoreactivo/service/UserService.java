@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 public interface UserService {
     Mono<UserDto> createUser(CreateUserDto createUserDto);
     Mono<UserDto> updateUser(UserDto userDto);
-    Mono<UserDto> deleteUser(UserDto userDto);
+    Mono<UserDto> deleteUser(Integer userId);
     Mono<UserDto> getUser(Integer id);
     Flux<UserDto> getAllUsers();
     Mono<UserDto> getUserOrders(UserOrdersDto userOrdersDto);

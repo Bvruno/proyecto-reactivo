@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @DeleteMapping
-    public Mono<UserDto> deleteUser(@RequestBody UserDto userDto) {
-        return userService.deleteUser(userDto);
+    public Mono<UserDto> deleteUser(@RequestHeader Integer userId) {
+        return userService.deleteUser(userId);
     }
 }

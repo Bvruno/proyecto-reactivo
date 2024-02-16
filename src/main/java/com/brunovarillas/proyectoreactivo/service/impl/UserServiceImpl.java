@@ -46,8 +46,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Mono<UserDto> deleteUser(UserDto userDto) {
-        return userRepository.findById(userDto.id())
+    public Mono<UserDto> deleteUser(Integer userId) {
+        return userRepository.findById(userId)
                 .map(userEntity -> {
                     userEntity.setStatus(StateUser.INACTIVE);
                     return userEntity;

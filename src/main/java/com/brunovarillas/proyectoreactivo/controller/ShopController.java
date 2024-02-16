@@ -17,12 +17,12 @@ import reactor.core.publisher.Mono;
 public class ShopController {
     private final ShopService shopService;
 
-    @GetMapping
-    public Mono<ShopDto> getShop(@RequestHeader ShopDto shopId) {
+    @GetMapping("/{shopId}")
+    public Mono<ShopDto> getShop(@RequestParam Integer shopId) {
         return shopService.getShop(shopId);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public Flux<ShopDto> getAllShops() {
         return shopService.getAllShops();
     }
@@ -38,8 +38,8 @@ public class ShopController {
     }
 
     @DeleteMapping
-    public Mono<ShopDto> deleteShop(@RequestBody ShopDto shopDto) {
-        return shopService.deleteShop(shopDto);
+    public Mono<ShopDto> deleteShop(@RequestHeader Integer shopId) {
+        return shopService.deleteShop(shopId);
     }
 
     @GetMapping("/order")

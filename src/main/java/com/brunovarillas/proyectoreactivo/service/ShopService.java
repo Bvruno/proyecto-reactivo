@@ -10,8 +10,8 @@ import reactor.core.publisher.Mono;
 public interface ShopService {
     Mono<CreateShopDto> createShop(CreateShopDto createShopDto);
     Mono<ShopDto> updateShop(ShopDto shopDto);
-    Mono<ShopDto> deleteShop(ShopDto shopDto);
-    Mono<ShopDto> getShop(ShopDto shopDto);
+    Mono<ShopDto> deleteShop(Integer shopId);
+    Mono<ShopDto> getShop(Integer shopId);
     Flux<ShopDto> getAllShops();
     Flux<ShopOrdersDto> getShopOrders(ShopOrdersDto ShopOrdersDto);
 }

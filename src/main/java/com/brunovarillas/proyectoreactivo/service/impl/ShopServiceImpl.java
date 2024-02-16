@@ -49,8 +49,8 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Mono<ShopDto> deleteShop(ShopDto shopDto) {
-        return shopRepository.findById(shopDto.id())
+    public Mono<ShopDto> deleteShop(Integer shopId) {
+        return shopRepository.findById(shopId)
                 .map(shopEntity -> {
                     shopEntity.setStatus(StateShop.DELETED);
                     return shopEntity;
@@ -66,8 +66,8 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Mono<ShopDto> getShop(ShopDto shopDto) {
-        return shopRepository.findById(shopDto.id())
+    public Mono<ShopDto> getShop(Integer shopId) {
+        return shopRepository.findById(shopId)
                 .map(shopEntity -> new ShopDto(
                         shopEntity.getId(),
                         shopEntity.getDescription(),
