@@ -1,0 +1,63 @@
+@startuml
+entity UserEntity {
+    + userId : Integer
+    + username : String
+    + email : String
+    + password : String
+    + role : Role
+    + status : StateUser
+}
+
+entity ShopEntity {
+    + shopId : Integer
+    + name : String
+    + description : String
+    + address : String
+    + schedule : String
+    + status : StateShop
+}
+
+entity PurchaseDetailEntity {
+    + purchaseDetailsId : Integer
+    + listOrderId : List<Integer>
+    + quantity : Integer
+    + price : Double
+    + status : StateSale
+    + date : Long
+}
+
+entity ProductEntity {
+    + productId : Integer
+    + name : String
+    + description : String
+    + urlImage : String
+    + shopId : Integer
+    + status : StateProduct
+}
+
+entity OrderEntity {
+    + orderId : Integer
+    + offerId : Integer
+    + quantity : Integer
+    + total : Double
+    + date : Long
+}
+
+entity OfferEntity {
+    + offerId : Integer
+    + productId : Integer
+    + shopId : Integer
+    + stock : Integer
+    + price : Double
+    + status : StateOffer
+    + date : Long
+}
+
+UserEntity --> PurchaseDetailEntity : makes
+PurchaseDetailEntity --> ProductEntity : includes
+PurchaseDetailEntity --> OrderEntity : belongs to
+ProductEntity --> ShopEntity : belongs to
+OfferEntity --> ProductEntity : belongs to
+OfferEntity --> ShopEntity : belongs to
+OrderEntity --> OfferEntity : has
+@enduml
