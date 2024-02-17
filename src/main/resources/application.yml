@@ -1,23 +1,23 @@
 spring:
+  application:
+    name: proyecto-reactivo
   data:
     r2dbc:
       repositories:
         enabled: true
 
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: postgres
+    url: ${URL:r2dbc:postgresql://localhost:5432/postgres}
+    username: ${USERNAME:postgres}
+    password: ${PASSWORD:postgres}
 
 server:
   port: 8080
-  servlet:
-    context-path: /api
 
 application:
   security:
     jwt:
-      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
-      expiration: 86400000 # a day
+      secret-key: ${SECRET_KEY:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+      expiration: ${EXPIRATION:86400000} # a day
       refresh-token:
-        expiration: 604800000 # 7 days
+        expiration: ${REFRESH_TOKEN_EXPIRATION:604800000} # 7 days
